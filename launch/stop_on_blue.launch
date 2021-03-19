@@ -1,0 +1,20 @@
+<launch>
+  <!-- <include file="$(find simple_sim_office)/launch/office.launch" /> -->
+
+  <!-- Load map -->
+  <param name="map_dir" value="$(find simple_sim_office)/map" />
+  <rosparam command="load" file="$(find simple_sim_office)/map/blue_tape_floor.yaml" />
+  
+  <!-- Load obstacles -->
+  <rosparam command="load" file="$(find simple_sim_office)/map/blue_tape_floor_obstacles_1.yaml" />
+
+  <!-- Load robot -->
+  <rosparam command="load" file="$(find simple_sim_office)/robot/ackermann.yaml" />
+
+  <include file="$(find simple_sim)/launch/simple_sim.launch"> 
+    <arg name="show_rviz" value="false" />
+    <arg name="show_kb_teleop" value="false" />
+  </include>
+
+  <node name="stop_on_blue" pkg="stop_on_blue" type="stop_on_blue" output="screen" />
+</launch>
